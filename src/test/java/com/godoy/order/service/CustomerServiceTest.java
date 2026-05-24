@@ -214,7 +214,6 @@ class CustomerServiceTest {
         void shouldThrowBusinessExceptionWhenEmailUsedByAnotherCustomer() {
             customer.setEmail("outro.email@email.com");
 
-            when(customerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
             when(customerRepository.existsByEmail(request.email())).thenReturn(true);
 
             assertThatThrownBy(() -> customerService.create(request))
@@ -229,7 +228,6 @@ class CustomerServiceTest {
         void shouldThrowBusinessExceptionWhenCpfUsedByAnotherCustomer() {
             customer.setCpf("88888888888");
 
-            when(customerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
             when(customerRepository.existsByCpf(request.cpf())).thenReturn(true);
 
             assertThatThrownBy(() -> customerService.create(request))

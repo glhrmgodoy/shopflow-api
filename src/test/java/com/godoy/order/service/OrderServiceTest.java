@@ -186,7 +186,7 @@ class OrderServiceTest {
 
             assertThatThrownBy(() -> orderService.create(request))
                     .isInstanceOf(BusinessException.class)
-                    .hasMessage("Produto" + product.getName() + "está inativo");
+                    .hasMessage("Produto " + product.getName() + " está inativo");
 
             verify(orderRepository, never()).save(any());
         }
@@ -200,7 +200,7 @@ class OrderServiceTest {
 
             assertThatThrownBy(() -> orderService.create(request))
                     .isInstanceOf(BusinessException.class)
-                    .hasMessage("Estoque insuficiente para o produto" + product.getName());
+                    .hasMessage("Estoque insuficiente para o produto " + product.getName());
 
             verify(orderRepository, never()).save(any());
         }
